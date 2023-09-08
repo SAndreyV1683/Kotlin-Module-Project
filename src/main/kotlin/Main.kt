@@ -1,3 +1,12 @@
+import java.util.Stack
+
 fun main(args: Array<String>) {
-    println("Hello World!")
+
+
+    Archive.pushToStack()
+    val screen = Archive.forwardStack.pop()
+    Archive.backwardStack.push(screen)
+    screen.startScreen()
+
+
 }
