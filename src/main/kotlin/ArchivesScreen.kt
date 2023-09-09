@@ -1,24 +1,28 @@
+import Archive.archive
 import java.util.Scanner
 
-class ArchivesScreen(create: String, exit: String): Screen(create, exit) {
-    override fun startScreen() {
+class ArchivesScreen(create: String, exit: String): Screen() {
+
+    private val menuList = arrayListOf(create, exit)
+    override fun startScreen(archiveName: String, noteName: String) {
         println("Список архивов:")
-        val menuList = arrayListOf("Создать архив", "Выход")
         menuList.forEachIndexed { index, element -> println("$index. $element") }
-        val input = scanner.nextInt()
-        if (input == 0) {
+        var input = -1
 
-        } else if (input == menuList.size - 1) {
-
+        while (input != menuList.size - 1) {
+            input = scanner.nextInt()
+            if (input == 0) {
+                println("Введите название архива")
+                scanner = Scanner(System.`in`)
+                val archName = scanner.nextLine()
+                archive[archName] = mutableMapOf()
+                menuList.add(1, archName)
+                menuList.forEachIndexed { index, element -> println("$index. $element") }
+            } else if (input < menuList.size - 1) {
+                showNextScreen(menuList[input], "", this)
+                break
+            }
         }
-    }
-
-    override fun showNextScreen() {
-
-    }
-
-    override fun showPreviousScreen() {
-
     }
 
 
