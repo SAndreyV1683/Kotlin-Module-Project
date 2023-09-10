@@ -1,13 +1,11 @@
 import App.archive
 
-class OpenArchive(private val create: String, private val exit: String): Screen(create, exit) {
+class OpenArchive(create: String, exit: String): Screen(create, exit) {
     override fun startScreen(archiveName: String, noteName: String) {
 
         println("Список заметок в архиве $archiveName:")
-        val menuList = arrayListOf(create, exit)
-        archive[archiveName]?.keys?.toList()?.let { menuList.addAll(1, it) }
-
-        menuList.forEachIndexed { index, element -> println("$index. $element") }
+        createNewArchiveMenu(archiveName)
+        showMenu()
         var input = -1
 
         while (input != menuList.size - 1) {
@@ -19,7 +17,7 @@ class OpenArchive(private val create: String, private val exit: String): Screen(
                 println("Введите текст заметки")
                 notes?.set(nName, getText())
                 menuList.add(1, nName)
-                menuList.forEachIndexed { index, element -> println("$index. $element") }
+                showMenu()
             } else if (input < menuList.size - 1) {
                 showNextScreen(archiveName, menuList[input], this)
                 break

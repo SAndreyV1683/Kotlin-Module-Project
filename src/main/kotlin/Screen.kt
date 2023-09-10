@@ -1,10 +1,11 @@
+import App.archive
 import App.backwardStack
 import App.forwardStack
 import java.util.Scanner
 
-abstract class Screen(create: String, exit: String) {
+abstract class Screen(private val create: String, private val exit: String) {
     open var scanner = Scanner(System.`in`)
-    val menuList = arrayListOf(create, exit)
+    var menuList = arrayListOf(create, exit)
     abstract fun startScreen(archiveName: String = "", noteName: String = "")
     open fun showNextScreen(archiveName: String = "", noteName: String = "", screen: Screen) {
         val sc = forwardStack.pop()
@@ -52,6 +53,11 @@ abstract class Screen(create: String, exit: String) {
                 println("Ввод не может быть пустым")
         }
         return text
+    }
+
+    open fun createNewArchiveMenu(archiveName: String) {
+        menuList = arrayListOf(create, exit)
+        archive[archiveName]?.keys?.toList()?.let { menuList.addAll(1, it) }
     }
 
     open fun showMenu() {
