@@ -1,5 +1,5 @@
 fun main() {
-    Archive.pushToStack()
-    val screen = Archive.forwardStack.pop()
+    App.pushToStack()
+    val screen = App.forwardStack.pop()
     screen.startScreen()
 }

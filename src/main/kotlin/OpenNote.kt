@@ -1,4 +1,4 @@
-import Archive.archive
+import App.archive
 
 
 class OpenNote(create: String, exit: String): Screen() {
@@ -12,10 +12,10 @@ class OpenNote(create: String, exit: String): Screen() {
         var input = -1
 
         while (input != menuList.size - 1) {
-            input = scanner.nextInt()
+            input = getNavNumber(menuList.size - 1)
             if (input == 0) {
-                println("Текст заметки: ${archive[archiveName]?.get(noteName)}")
-
+                println("Текст заметки: ${archive[archiveName]?.get(noteName)}\n")
+                menuList.forEachIndexed { index, element -> println("$index. $element") }
             } else if (input == menuList.size - 1) {
                 showPreviousScreen(archName, this)
                 break

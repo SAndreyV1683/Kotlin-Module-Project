@@ -1,7 +1,7 @@
 import java.util.Stack
 
-object Archive {
-    val archive = mutableMapOf<String, Map<String, String>>()
+object App {
+    val archive = mutableMapOf<String, MutableMap<String, String>>()
     val forwardStack = Stack<Screen>()
     val backwardStack = Stack<Screen>()
     fun pushToStack() {

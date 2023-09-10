@@ -1,4 +1,4 @@
-import Archive.archive
+import App.archive
 import java.util.Scanner
 
 class ArchivesScreen(create: String, exit: String): Screen() {
@@ -10,7 +10,7 @@ class ArchivesScreen(create: String, exit: String): Screen() {
         var input = -1
 
         while (input != menuList.size - 1) {
-            input = scanner.nextInt()
+            input = getNavNumber(menuList.size - 1)
             if (input == 0) {
                 println("Введите название архива")
                 scanner = Scanner(System.`in`)
@@ -24,6 +24,4 @@ class ArchivesScreen(create: String, exit: String): Screen() {
             }
         }
     }
-
-
 }
