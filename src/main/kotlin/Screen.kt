@@ -2,8 +2,9 @@ import App.backwardStack
 import App.forwardStack
 import java.util.Scanner
 
-abstract class Screen {
+abstract class Screen(create: String, exit: String) {
     open var scanner = Scanner(System.`in`)
+    val menuList = arrayListOf(create, exit)
     abstract fun startScreen(archiveName: String = "", noteName: String = "")
     open fun showNextScreen(archiveName: String = "", noteName: String = "", screen: Screen) {
         val sc = forwardStack.pop()
@@ -38,4 +39,23 @@ abstract class Screen {
         }
         return navNumber
     }
+
+    open fun getText(): String {
+        var hasText = false
+        var text = ""
+        while (!hasText) {
+            scanner = Scanner(System.`in`)
+            text = scanner.nextLine()
+            if (text != "")
+                hasText = true
+            else
+                println("Ввод не может быть пустым")
+        }
+        return text
+    }
+
+    open fun showMenu() {
+        menuList.forEachIndexed { index, element -> println("$index. $element") }
+    }
+
 }
